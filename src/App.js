@@ -40,13 +40,18 @@ class App extends React.Component {
       todos: updatTodos
     });
   }
+  clear = () => {
+    this.setState({
+      todos: this.state.todos.filter((todo)=>!todo.completed)
+    })
+  }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList todos={this.state.todos} completed={this.completed}/>
         <TodoForm addTodo={this.addTodo}/>
-        <button>Clear Completed</button>
+        <button onClick={this.clear}>Clear Completed</button>
       </div>
     );
   }
