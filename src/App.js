@@ -16,14 +16,16 @@ class App extends React.Component {
   
   addTodo = (task) => {
     this.setState({
-      todos: [...todos, {
+      todos: [...this.state.todos, {
         task: task,
-        id: new Date(),
+        id: this.state.todos.length,
         completed: false
       }]
     })
   }
+ 
   render() {
+    console.log(this.state.todos)
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
