@@ -2,6 +2,7 @@ import React from "react";
 import todos from "./data/todoData";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
+import './../src/components/Todo.css'
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -23,13 +24,27 @@ class App extends React.Component {
       }]
     })
   }
- 
+  completed = (id) => {
+    const updatTodos = this.state.todos.map(item => {
+      if (item.id === id) {
+        return( {
+          ...item,
+          completed: !item.completed
+        });
+      } else {
+        return item
+      }
+    });
+
+    this.setState({
+      todos: updatTodos
+    });
+  }
   render() {
-    console.log(this.state.todos)
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} completed={this.completed}/>
         <TodoForm addTodo={this.addTodo}/>
         <button>Clear Completed</button>
       </div>
